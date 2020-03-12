@@ -1,0 +1,2 @@
+module AmazonWrappersHelper
+end
