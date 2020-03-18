@@ -2,12 +2,12 @@
 
 one:
   content: MyText
-  sentiment_score: 1.5
-  sentiment_magnitude: 1.5
+  sentiment: 1.5
+  magnitude: 1.5
   journal: one
 
 two:
   content: MyText
-  sentiment_score: 1.5
-  sentiment_magnitude: 1.5
+  sentiment: 1.5
+  magnitude: 1.5
   journal: two

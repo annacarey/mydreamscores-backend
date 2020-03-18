@@ -17,8 +17,9 @@ ActiveRecord::Schema.define(version: 2020_03_12_162734) do
 
   create_table "journal_entries", force: :cascade do |t|
     t.text "content"
-    t.float "sentiment_score"
-    t.float "sentiment_magnitude"
+    t.string "zipcode"
+    t.float "sentiment"
+    t.float "magnitude"
     t.bigint "journal_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -34,7 +35,7 @@ ActiveRecord::Schema.define(version: 2020_03_12_162734) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "zip_code"
+    t.string "zipcode"
     t.string "email"
     t.string "phone_number"
     t.string "password_digest"
