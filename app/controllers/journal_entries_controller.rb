@@ -5,7 +5,7 @@ class JournalEntriesController < ApplicationController
         if (params[:user][:id] != "") 
             user = User.find(params[:user][:id])
         else 
-            user = User.create(email: "anonymous", zipcode: zipcode)
+            user = User.create(email: "anonymous", zipcode: zipcode, password: "anonymouspassword")
         end
         coronavirus = Journal.create(title: "Coronavirus", user: user)
         client = GoogleDriveWrapper.new.client

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_12_162734) do
+ActiveRecord::Schema.define(version: 2020_04_14_173203) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,9 @@ ActiveRecord::Schema.define(version: 2020_03_12_162734) do
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "ok_to_contact"
+    t.boolean "ok_to_save_entries"
+    t.string "password_confirmation"
   end
 
   add_foreign_key "journal_entries", "journals"
