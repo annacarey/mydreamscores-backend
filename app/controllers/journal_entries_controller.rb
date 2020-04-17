@@ -5,9 +5,9 @@ class JournalEntriesController < ApplicationController
         if (params[:user][:id] != "") 
             user = User.find(params[:user][:id])
         else 
-            user = User.create(email: "anonymous", zipcode: zipcode, password: "anonymouspassword")
+            user = User.generate_anonymous_user(zipcode)
         end
-        coronavirus = Journal.create(title: "Coronavirus", user: user)
+        coronavirus = Journal.find_or_create_by(title: "coronavirus", user: user)
         client = GoogleDriveWrapper.new.client
         content = params[:content]
         analyzed_text = client.analyze_sentiment content: content, type: :PLAIN_TEXT
@@ -32,10 +32,10 @@ class JournalEntriesController < ApplicationController
     end 
 
     def index 
-        if params[:user_id]     
-            journal_entries = User.find(params[:user_id].to_i).coronavirus_journal_entries
+        if params[:user_id]
+            journal_entries = User.find(params[:user_id].to_i).coronavirus_journal_entries.order(created_at: :desc)
         else 
-            journal_entries = JournalEntry.all
+            journal_entries = JournalEntry.all.order(:created_at)
         end 
         render json: journal_entries
     end 
