@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(version: 2020_04_14_173203) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "ok_to_contact"
-    t.boolean "ok_to_save_entries"
     t.string "password_confirmation"
   end
 

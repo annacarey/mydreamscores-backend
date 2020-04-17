@@ -18,7 +18,12 @@ class UsersController < ApplicationController
         if user.save
             render json: user, except: [:created_at, :updated_at]
         else  
-            render json: {error: user.errors.full_messages}
+            errors = user.errors.full_messages
+            if errors.select{|error| error.split(" ")[0] === "Password"}.length > 1 
+                errors.delete_at(1)
+            end
+            if errors.find{|error}
+            render json: {error: errors}
         end 
     end 
 
