@@ -22,9 +22,12 @@ class UsersController < ApplicationController
             if errors.select{|error| error.split(" ")[0] === "Password"}.length > 1 
                 errors.delete_at(1)
             end
-            if errors.find{|error}
+            password_confirmation_error = errors.find{|error| error.split(" ")[1] === "confirmation"}
+            if password_confirmation_error
+                errors[errors.index(password_confirmation_error)] = "Passwords don't match"
+            end
             render json: {error: errors}
-        end 
+        end
     end 
 
     private
