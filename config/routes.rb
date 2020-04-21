@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   #user routes
   post '/login', to: 'users#login'
   post '/signup', to: 'users#signup'
+  get '/auto-login', to: 'users#auto_login'
   get '/users/:user_id/journal-entries', to: 'journal_entries#index'
   
   #journal entry routes

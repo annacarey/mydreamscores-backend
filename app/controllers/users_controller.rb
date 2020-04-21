@@ -11,6 +11,15 @@ class UsersController < ApplicationController
         end
     end
 
+    def auto_login
+        user = User.find(request.headers["Authorization"])
+        if user
+            render json: user
+        else 
+            render json: {errors: "No user found."}
+        end 
+    end 
+
     def signup
         user = User.new(user_params)
         user.email.downcase!
