@@ -25,7 +25,7 @@ class User < ApplicationRecord
     # end
 
     def self.send_text_messages
-        puts "in user model test test test"
+        puts "in user model"
         @client = Twilio::REST::Client.new(ENV["TWILIO_ACCOUNT_SID"], ENV["TWILIO_AUTH_TOKEN"]) 
         contactable_users = User.all.select {|user| user.ok_to_contact}
         phone_numbers = contactable_users.map {|user| user.phone_number}
