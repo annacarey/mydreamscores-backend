@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
     skip_before_action :verify_authenticity_token
 
     def encode_token(id)
-        JWT.encode({user_id: id}, ENV["jwt_secret"])
+        JWT.encode({user_id: id}, ENV["JWT_SECRET"])
     end 
     def get_auth_header
         request.headers["Authorization"]
@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
     def decoded_token
         begin 
-            JWT.decode(get_auth_header, ENV["jwt_secret"])[0]["user_id"]
+            JWT.decode(get_auth_header, ENV["JWT_SECRET"])[0]["user_id"]
         rescue 
             nil
         end
