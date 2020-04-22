@@ -1166,6 +1166,7 @@ DEPENDENCIES
   google-api-client (~> 0.34)
   google-cloud-language
   jbuilder (~> 2.7)
+  jwt
   listen (>= 3.0.5, < 3.2)
   pg (>= 0.18, < 2.0)
   puma (~> 4.1)

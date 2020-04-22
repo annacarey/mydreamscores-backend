@@ -3,7 +3,8 @@ class UsersController < ApplicationController
     def login
         user = User.find_by(email: params["user"]["email"].downcase)
         if user && user.authenticate(params["user"]["password"])
-            render json: user, except: [:created_at, :updated_at]
+            token = encode_token(user.id)
+            render json: {user: user, token: token}
         elsif !user
             render json: {error: "User not found"} 
         else  
@@ -12,9 +13,8 @@ class UsersController < ApplicationController
     end
 
     def auto_login
-        user = User.find(request.headers["Authorization"])
-        if user
-            render json: user
+        if session_user
+            render json: session_user
         else 
             render json: {errors: "No user found."}
         end 
@@ -25,7 +25,8 @@ class UsersController < ApplicationController
         user.email.downcase!
 
         if user.save
-            render json: user, except: [:created_at, :updated_at]
+            token = encode_token(user.id)
+            render json: {user: user, token: token}
         else  
             errors = user.errors.full_messages
             if errors.select{|error| error.split(" ")[0] === "Password"}.length > 1 
