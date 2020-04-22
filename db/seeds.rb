@@ -13,11 +13,11 @@ JournalEntry.destroy_all
 Journal.destroy_all
 User.destroy_all
 
-testuser = User.create(email: "hello@gmail.com", zipcode: "10501", password: "123456")
+testuser = User.create(email: "hello@gmail.com", phone_number: '+19149074672', zipcode: "10501", password: "123456", ok_to_contact: true)
 
-anna = User.create(email: "anna@gmail.com", zipcode: "10583", password: "123456")
+anna = User.create(email: "anna@gmail.com", phone_number: '+16466441998', zipcode: "10583", password: "123456", ok_to_contact: true)
 
-testuser2 = User.create(email: "flatironstudent@gmail.com", zipcode: "90037", password: "123456")
+testuser2 = User.create(email: "flatironstudent@gmail.com",phone_number: '+19149074672', zipcode: "90037", password: "123456", ok_to_contact: true)
 
 coronavirus = Journal.create(title: "coronavirus", user: testuser)
 coronavirus2 = Journal.create(title: "coronavirus", user: anna)

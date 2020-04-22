@@ -31,6 +31,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'rack-cors'
 
+gem 'twilio-ruby'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -60,8 +62,10 @@ gem 'figaro'
 
 gem 'aws-sdk'
 
-gem 'byebug'
-
 gem 'google-api-client', '~> 0.34'
 
 gem 'google-cloud-language'
+
+gem 'whenever', require: false
+
+gem 'rest-client'
