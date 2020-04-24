@@ -25,6 +25,12 @@
 
 set :environment, "development"
 
-every 1.day, at: '6:30 am' do
+set :output, './log/chron_log.log'
+
+every :day, at: '6:30 am' do
     runner "User.send_text_messages"
 end
+
+# every :day, at: '5:30 am' do
+#     runner "User.send_text_messages"
+# end

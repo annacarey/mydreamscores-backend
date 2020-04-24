@@ -25,11 +25,12 @@ class User < ApplicationRecord
     # end
 
     def self.send_text_messages
-        puts "in user model test"
+        puts "in send text message method"
         @client = Twilio::REST::Client.new(ENV["TWILIO_ACCOUNT_SID"], ENV["TWILIO_AUTH_TOKEN"]) 
         contactable_users = User.all.select {|user| user.ok_to_contact}
         phone_numbers = contactable_users.map {|user| user.phone_number}
         filtered_numbers = phone_numbers.select {|phone_number| User.valid?(phone_number)}
+        puts filtered_numbers
         filtered_numbers.each do |phone_number| 
             @client.messages.create( 
                 body: "Good morning, dreamer! Remember to record your dream on DreamScore today: mydreamscore.co", 
@@ -42,7 +43,7 @@ class User < ApplicationRecord
     def self.valid?(phone_number)
         @client = Twilio::REST::Client.new(ENV["TWILIO_ACCOUNT_SID"], ENV["TWILIO_AUTH_TOKEN"]) 
         begin
-          response = @client.lookups.phone_numbers(phone_number).fetch(country_code: 'US') #if invalid, throws an exception. If valid, no problems.
+          response = @client.lookups.phone_numbers(phone_number).fetch(country_code: 'US')
           return true
         rescue => e
             puts e
@@ -50,7 +51,7 @@ class User < ApplicationRecord
             return false
           else
             raise e
+          end
         end
-      end
     end
 end
