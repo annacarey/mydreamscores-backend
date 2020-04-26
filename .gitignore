@@ -22,7 +22,7 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
-/config/google-credentials.json
+/google-credentials.json
 
 /public/packs
 /public/packs-test
