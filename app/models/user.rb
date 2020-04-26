@@ -10,8 +10,8 @@ class User < ApplicationRecord
         self.journals.find_by(title: "coronavirus").journal_entries
     end 
 
-    def self.generate_anonymous_user(zipcode)
-        User.create(email: "user#{User.last.id + 1}", zipcode: zipcode, password: "anonymous#{User.last.id + 1}")
+    def self.generate_anonymous_user(zipcode, region)
+        User.create(email: "user#{User.last.id + 1}", region: region, zipcode: zipcode, password: "anonymous#{User.last.id + 1}")
     end
 
     # def send_text_message

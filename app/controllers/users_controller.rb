@@ -23,9 +23,9 @@ class UsersController < ApplicationController
     def signup
         user = User.new(user_params)
         user.email.downcase!
-
         if user.save
             token = encode_token(user.id)
+            puts user
             render json: {user: user, token: token}
         else  
             errors = user.errors.full_messages
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.require(:user).permit(:email, :phone_number, :password, :password_confirmation, :zipcode, :ok_to_contact, :ok_to_save_entries)
+        params.require(:user).permit(:email, :phone_number, :region, :password, :password_confirmation, :zipcode, :ok_to_contact, :ok_to_save_entries)
     end 
 
 end

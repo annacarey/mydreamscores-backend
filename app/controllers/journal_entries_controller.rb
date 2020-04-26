@@ -2,10 +2,11 @@ class JournalEntriesController < ApplicationController
 
     def create
         zipcode = params[:zipcode]
+        region = params[:region]
         if (params[:user][:id] != "") 
             user = User.find(params[:user][:id])
         else 
-            user = User.generate_anonymous_user(zipcode)
+            user = User.generate_anonymous_user(zipcode, region)
         end
         coronavirus = Journal.find_or_create_by(title: "coronavirus", user: user)
         client = GoogleDriveWrapper.new.client
@@ -14,7 +15,7 @@ class JournalEntriesController < ApplicationController
         sentiment = analyzed_text.document_sentiment
         sentiment = sentiment.score
         magnitude = sentiment.magnitude
-        entry = JournalEntry.create(journal: coronavirus, zipcode: zipcode, content: content, sentiment: sentiment, magnitude: magnitude)
+        entry = JournalEntry.create(journal: coronavirus, region: region, zipcode: zipcode, content: content, sentiment: sentiment, magnitude: magnitude)
         render json: entry
     end 
 
