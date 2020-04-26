@@ -25,7 +25,6 @@ class UsersController < ApplicationController
         user.email.downcase!
         if user.save
             token = encode_token(user.id)
-            puts user
             render json: {user: user, token: token}
         else  
             errors = user.errors.full_messages
