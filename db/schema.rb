@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_14_173203) do
+ActiveRecord::Schema.define(version: 2020_04_24_214458) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2020_04_14_173203) do
     t.bigint "journal_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "region"
     t.index ["journal_id"], name: "index_journal_entries_on_journal_id"
   end
 
@@ -43,6 +44,7 @@ ActiveRecord::Schema.define(version: 2020_04_14_173203) do
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "ok_to_contact"
     t.string "password_confirmation"
+    t.string "region"
   end
 
   add_foreign_key "journal_entries", "journals"
